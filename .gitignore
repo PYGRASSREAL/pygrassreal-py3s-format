@@ -1,1 +1,28 @@
-﻿__pycache__/
+# Internal filing guides & drafts (Private / Not for public repo)
+docs/
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Build artifacts & binaries
+build/
+dist/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
