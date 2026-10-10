@@ -1,6 +1,10 @@
-# PyGrassReal 3D Splat (`.py3s`) File Format
-
 <div align="center">
+
+<a href="https://pygrassreal.ai">
+  <img src="assets/logo.png" alt="PyGrassReal Logo" width="220" />
+</a>
+
+# PyGrassReal 3D Splat (`.py3s`) File Format
 
 [![Specification](https://img.shields.io/badge/Specification-v1.0.0-blue.svg)](SPECIFICATION.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
