@@ -27,10 +27,10 @@ Standard 3D Gaussian Splatting formats (`.ply`, `.splat`, `.spz`) represent only
 
 ## 🚀 The Solution: `.py3s` Single-Container Format
 Developed by **PyGrassReal AI**, **`.py3s`** is a unified binary container that bundles:
-1. **Visual Layer:** Ultra-compact 3D Gaussian Splatting payload (compatible with `.spz`).
-2. **Physics Layer:** Optimized low-poly collision mesh (GLB / UCX convex hulls) for 100% solid navigation and raycasting.
+1. **Visual Layer:** High-density, precision-quantized 3D Gaussian Splatting payload (*PyGrassReal Compressed 3DGS Payload*).
+2. **Physics Layer:** Precision collision geometry and convex hulls (*Embedded Spatial Collision Mesh*) for 100% solid navigation and raycasting.
 3. **Calibrated Alignment:** Embedded transform matrices (offset, rotation, scale) for instant 1:1 ground-aligned snapping.
-4. **Metadata & Thumbnail:** Embedded JSON metadata and preview imagery.
+4. **Metadata & Preview:** Embedded spatial metadata descriptor and visual asset preview.
 
 > **Result:** Drag a single `.py3s` file into Unreal Engine 5 or a WebGL viewer, and it renders photorealistically with solid collision physics enabled **instantly in 1 click**.
 
@@ -44,13 +44,13 @@ A `.py3s` file consists of a fixed **128-byte Header** followed by 4 payload sec
 ┌────────────────────────────────────────────────────────┐
 │             PY3S File Header (128 Bytes)               │  Offset 0x00
 ├────────────────────────────────────────────────────────┤
-│          Section 1: SPZ Payload (Visual 3DGS)          │  Offset = SpzOffset (default 0x80)
+│     Section 1: Visual Layer (Compressed 3DGS Payload)  │  Offset = SpzOffset (default 0x80)
 ├────────────────────────────────────────────────────────┤
-│          Section 2: Collision Mesh (Physics)           │  Offset = ColliderOffset
+│     Section 2: Physics Layer (Collision Geometry)      │  Offset = ColliderOffset
 ├────────────────────────────────────────────────────────┤
-│          Section 3: Metadata JSON (UTF-8)              │  Offset = MetadataOffset
+│     Section 3: Metadata Layer (Spatial Descriptor)     │  Offset = MetadataOffset
 ├────────────────────────────────────────────────────────┤
-│          Section 4: Thumbnail Image (Optional)         │  Offset = ThumbnailOffset
+│     Section 4: Visual Preview Layer (Optional Image)   │  Offset = ThumbnailOffset
 └────────────────────────────────────────────────────────┘
 ```
 
@@ -61,16 +61,16 @@ A `.py3s` file consists of a fixed **128-byte Header** followed by 4 payload sec
 | `Magic` | `char[4]` | 4 B | Always `"PY3S"` (`0x50 0x59 0x33 0x53`) |
 | `VersionMajor` | `uint16` | 2 B | Major version (`1`) |
 | `VersionMinor` | `uint16` | 2 B | Minor version (`0`) |
-| `Flags` | `uint32` | 4 B | Compression & collider format flags |
+| `Flags` | `uint32` | 4 B | Payload encoding and compression flags |
 | `Reserved1` | `uint32` | 4 B | Reserved for future alignment |
-| `SpzOffset` | `uint64` | 8 B | Byte offset to Section 1 (Visual SPZ) |
-| `SpzSize` | `uint64` | 8 B | Uncompressed/Compressed SPZ size in bytes |
-| `ColliderOffset` | `uint64` | 8 B | Byte offset to Section 2 (Collision Mesh) |
-| `ColliderSize` | `uint64` | 8 B | Collision mesh size in bytes |
-| `MetadataOffset` | `uint64` | 8 B | Byte offset to Section 3 (JSON Metadata) |
+| `SpzOffset` | `uint64` | 8 B | Byte offset to Section 1 (Visual 3DGS Payload) |
+| `SpzSize` | `uint64` | 8 B | Visual 3DGS Payload size in bytes |
+| `ColliderOffset` | `uint64` | 8 B | Byte offset to Section 2 (Collision Geometry) |
+| `ColliderSize` | `uint64` | 8 B | Collision geometry size in bytes |
+| `MetadataOffset` | `uint64` | 8 B | Byte offset to Section 3 (Spatial Metadata JSON) |
 | `MetadataSize` | `uint64` | 8 B | Metadata size in bytes |
-| `ThumbnailOffset`| `uint64` | 8 B | Byte offset to Section 4 (Thumbnail) |
-| `ThumbnailSize` | `uint64` | 8 B | Thumbnail size in bytes |
+| `ThumbnailOffset`| `uint64` | 8 B | Byte offset to Section 4 (Visual Preview Image) |
+| `ThumbnailSize` | `uint64` | 8 B | Visual Preview size in bytes |
 | `Reserved` | `uint8[48]` | 48 B | Zero-padded for future extensions |
 
 For comprehensive technical specifications, read [SPECIFICATION.md](SPECIFICATION.md).

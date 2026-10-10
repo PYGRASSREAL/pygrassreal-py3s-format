@@ -12,13 +12,13 @@
 ---
 
 ## 1. วัตถุประสงค์ (Purpose)
-`.py3s` เป็น Single-Container Asset Format ที่ออกแบบมาเพื่อรวม:
-1. **Visual Layer**: 3D Gaussian Splatting (`.spz`)
-2. **Physics Layer**: Low-poly Collision Mesh (`.glb` หรือ `.fbx` ที่มี UCX Convex Hulls)
-3. **Metadata Layer**: JSON เก็บข้อมูล Alignment, Scale, Offset, Bounds, และพารามิเตอร์การเรนเดอร์
-4. **Thumbnail Layer** *(Optional)*: รูปพรีวิว WebP/PNG สำหรับ Content Browser และ Store
+`.py3s` เป็น Single-Container Asset Format มาตรฐานทางการของ **PyGrassReal AI** ที่ออกแบบมาเพื่อรวม:
+1. **Visual Layer**: ชุดข้อมูลแสดงผล 3D Gaussian Splatting (3DGS) บีบอัดความหนาแน่นสูงระดับความแม่นยำสูง (*PyGrassReal Compressed 3DGS Payload*)
+2. **Physics Layer**: โครงสร้างเรขาคณิตฟิสิกส์ 1:1 สำหรับการคำนวณการชนและการเคลื่อนที่ (*Precision Physics & Spatial Collision Geometry*)
+3. **Metadata Layer**: ชุดข้อมูลนิยามพิกัด ขนาด องศา และจุดยึดพื้นผิว (*Spatial Alignment & Engine Transform Descriptor*)
+4. **Thumbnail Layer** *(Optional)*: ชุดข้อมูลภาพตัวอย่างสินทรัพย์ 2 มิติสำหรับการแสดงผล (*Embedded Visual Asset Preview Chunk*)
 
-ไฟล์เดียวจบ ไม่ต้องแยกไฟล์ ไม่ต้องจับคู่ด้วยมือ ลากลง Unreal Engine 5 หรือ Web 3D Viewer ใช้งานได้ทันที 100%
+รวมจบสมบูรณ์ในคอนเทนเนอร์เดียว ไม่ต้องแยกจัดเก็บหลายไฟล์ ไม่ต้องตั้งค่าจับคู่ด้วยตนเอง สามารถนำเข้าสู่เอนจิ้นเกม (เช่น Unreal Engine 5) หรือ Web 3D Viewer เพื่อแสดงผลภาพเสมือนจริงพร้อมรองรับการชนทางฟิสิกส์ 1:1 ได้ทันที
 
 ---
 
@@ -28,13 +28,13 @@
 ┌────────────────────────────────────────────────────────┐
 │             PY3S File Header (128 Bytes)               │  Offset 0x00
 ├────────────────────────────────────────────────────────┤
-│          Section 1: SPZ Payload (Visual 3DGS)          │  Offset = SpzOffset (ปกติ 0x80)
+│     Section 1: Visual Layer (Compressed 3DGS Payload)  │  Offset = SpzOffset (ปกติ 0x80)
 ├────────────────────────────────────────────────────────┤
-│          Section 2: Collision Mesh (Physics)           │  Offset = ColliderOffset
+│     Section 2: Physics Layer (Collision Geometry)      │  Offset = ColliderOffset
 ├────────────────────────────────────────────────────────┤
-│          Section 3: Metadata (UTF-8 JSON)              │  Offset = MetadataOffset
+│     Section 3: Metadata Layer (Spatial Descriptor)     │  Offset = MetadataOffset
 ├────────────────────────────────────────────────────────┤
-│          Section 4: Thumbnail (WebP/PNG) [ถ้ามี]       │  Offset = ThumbnailOffset
+│     Section 4: Visual Preview Layer (Optional Image)   │  Offset = ThumbnailOffset
 └────────────────────────────────────────────────────────┘
 ```
 
@@ -48,15 +48,15 @@
 | `0x04` | 2 | `uint16` | `VersionMajor` | เวอร์ชันหลัก (ปัจจุบัน = 1) |
 | `0x06` | 2 | `uint16` | `VersionMinor` | เวอร์ชันย่อย (ปัจจุบัน = 0) |
 | `0x08` | 4 | `uint32` | `SectionCount` | จำนวน sections (ปกติ = 3 หรือ 4) |
-| `0x0C` | 4 | `uint32` | `Flags` | บิตแฟล็ก (0x1=ZSTD, 0x2=GLB, 0x4=FBX) |
-| `0x10` | 8 | `uint64` | `SpzOffset` | Byte offset จุดเริ่มต้นของ SPZ section |
-| `0x18` | 8 | `uint64` | `SpzSize` | ขนาดของ SPZ payload (bytes) |
-| `0x20` | 8 | `uint64` | `ColliderOffset` | Byte offset จุดเริ่มต้นของ Collider section |
-| `0x28` | 8 | `uint64` | `ColliderSize` | ขนาดของ Collider mesh (bytes) |
-| `0x30` | 8 | `uint64` | `MetadataOffset` | Byte offset จุดเริ่มต้นของ Metadata section |
-| `0x38` | 8 | `uint64` | `MetadataSize` | ขนาดของ Metadata JSON (bytes) |
-| `0x40` | 8 | `uint64` | `ThumbnailOffset` | Byte offset ของ Thumbnail (0 ถ้าไม่มี) |
-| `0x48` | 8 | `uint64` | `ThumbnailSize` | ขนาดของ Thumbnail (0 ถ้าไม่มี) |
+| `0x0C` | 4 | `uint32` | `Flags` | บิตแฟล็กการเข้ารหัสและการบีบอัดข้อมูล |
+| `0x10` | 8 | `uint64` | `SpzOffset` | Byte offset จุดเริ่มต้นของ Visual 3DGS Payload |
+| `0x18` | 8 | `uint64` | `SpzSize` | ขนาดของ Visual 3DGS Payload (bytes) |
+| `0x20` | 8 | `uint64` | `ColliderOffset` | Byte offset จุดเริ่มต้นของ Collision Geometry |
+| `0x28` | 8 | `uint64` | `ColliderSize` | ขนาดของ Collision Geometry (bytes) |
+| `0x30` | 8 | `uint64` | `MetadataOffset` | Byte offset จุดเริ่มต้นของ Spatial Metadata |
+| `0x38` | 8 | `uint64` | `MetadataSize` | ขนาดของ Spatial Metadata JSON (bytes) |
+| `0x40` | 8 | `uint64` | `ThumbnailOffset` | Byte offset ของ Visual Preview Image (0 ถ้าไม่มี) |
+| `0x48` | 8 | `uint64` | `ThumbnailSize` | ขนาดของ Visual Preview Image (0 ถ้าไม่มี) |
 | `0x50` | 48 | `uint8[48]` | `Reserved` | สงวนไว้สำหรับส่วนขยายอนาคต (zero padding) |
 
 ---
