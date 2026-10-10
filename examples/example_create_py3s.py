@@ -27,10 +27,10 @@ def main():
     output_dir = os.path.dirname(os.path.abspath(__file__))
     sample_file = os.path.join(output_dir, "sample_box.py3s")
 
-    # 1. จำลองข้อมูล Visual 3DGS Payload (ปกติจะมาจากไฟล์ .spz จริง)
+    # 1. จำลองข้อมูล Visual 3DGS Payload (PyGrassReal Compressed 3DGS Splat binary)
     fake_spz = b"PYGRASS_3DGS_SPZ_PAYLOAD_DATA_DEMO" * 50
 
-    # 2. จำลองข้อมูล Low-poly Collision Mesh (ปกติจะมาจากไฟล์ .glb หรือ .fbx)
+    # 2. จำลองข้อมูล Collision Geometry (Precision Physics Mesh / Convex Hull binary)
     fake_collider = b"GLTF_2_0_BINARY_COLLIDER_MESH_DEMO" * 20
 
     # 3. กำหนดค่า Metadata (Alignment, Rotation, Physics bounce)
@@ -81,8 +81,8 @@ def main():
     print("\nทดสอบ Unpack กลับมาตรวจสอบ:")
     container = Py3sContainer.unpack(packed_bytes)
     print(f"   Magic Header Valid: {container.version_major}.{container.version_minor}")
-    print(f"   SPZ Data: {len(container.spz_data):,} bytes")
-    print(f"   Collider Data: {len(container.collider_data):,} bytes")
+    print(f"   Visual Splat Data: {len(container.spz_data):,} bytes")
+    print(f"   Collision Mesh Data: {len(container.collider_data):,} bytes")
     print(f"   Asset Name: {container.metadata['asset']['name']}")
     print("=" * 60)
 

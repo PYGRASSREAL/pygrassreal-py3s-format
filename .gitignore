@@ -19,6 +19,7 @@ dist/
 *.dll
 *.so
 *.dylib
+*.py3s
 
 # Editor & OS files
 .vscode/

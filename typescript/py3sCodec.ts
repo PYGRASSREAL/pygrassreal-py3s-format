@@ -1,6 +1,7 @@
 /**
  * PyGrassReal 3D Splat (.py3s) Web & TypeScript Codec
- * Unified container for 3D Gaussian Splats (.spz) + Physics Collider (.glb/.fbx) + Metadata
+ * Unified container for 3D Gaussian Splatting (3DGS) Visuals + Precision Physics Collision Geometry + Spatial Metadata
+ * Official Reference Implementation by PyGrassReal AI (https://pygrassreal.ai)
  */
 
 export const PY3S_HEADER_MAGIC = 'PY3S';
