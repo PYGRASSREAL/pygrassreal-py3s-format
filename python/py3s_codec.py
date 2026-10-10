@@ -130,7 +130,12 @@ class Py3sContainer:
 
 
 def cmd_pack(args):
-    with open(args.spz, "rb") as f:
+    splat_path = getattr(args, "splat", None) or getattr(args, "spz", None)
+    if not splat_path or not os.path.exists(splat_path):
+        print(f"Error: Visual splat input file not found: {splat_path}")
+        sys.exit(1)
+
+    with open(splat_path, "rb") as f:
         spz_data = f.read()
 
     collider_data = b""
@@ -245,9 +250,9 @@ def main():
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     # pack
-    p_pack = subparsers.add_parser("pack", help="Pack SPZ + Collider + Metadata into .py3s")
-    p_pack.add_argument("--spz", required=True, help="Path to input .spz file")
-    p_pack.add_argument("--collider", required=False, help="Path to input collider mesh (.glb or .fbx)")
+    p_pack = subparsers.add_parser("pack", help="Pack Visual Splat + Collision Mesh + Metadata into .py3s")
+    p_pack.add_argument("--splat", "--spz", dest="splat", required=True, help="Path to input 3DGS visual splat file")
+    p_pack.add_argument("--collider", required=False, help="Path to input collision geometry mesh")
     p_pack.add_argument("--metadata", required=False, help="Path to custom metadata .json")
     p_pack.add_argument("--thumbnail", required=False, help="Path to thumbnail preview image")
     p_pack.add_argument("-o", "--output", required=True, help="Path to output .py3s file")

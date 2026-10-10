@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://pygrassreal.ai">
-  <img src="assets/logo.png" alt="PyGrassReal Logo" width="220" />
+  <img src="https://raw.githubusercontent.com/PYGRASSREAL/pygrassreal-py3s-format/main/assets/logo.png" alt="PyGrassReal Logo" width="220" />
 </a>
 
 # PyGrassReal 3D Splat (`.py3s`) File Format
@@ -11,7 +11,7 @@
 [![Magic String](https://img.shields.io/badge/Magic-PY3S-orange.svg)](#binary-layout)
 [![Engines](https://img.shields.io/badge/Engines-Unreal%205%20%7C%20Three.js%20%7C%20Python-purple.svg)](#implementations)
 
-**The Unified Single-Container Asset Format Combining 3D Gaussian Splatting Visuals with 1:1 Physics Collision.**
+**The Official Unified Single-Container Asset Standard Combining 3D Gaussian Splatting Visuals with 1:1 Physics Collision.**
 
 [📖 Read Specification](SPECIFICATION.md) • [🐍 Python SDK](python/) • [⚡ C++ Implementation](cpp/) • [🌐 TypeScript / Web](typescript/) • [🏛️ Official Platform](https://pygrassreal.ai)
 
@@ -19,20 +19,21 @@
 
 ---
 
-## 💡 The Problem with 3DGS Assets
-Standard 3D Gaussian Splatting formats (`.ply`, `.splat`, `.spz`) represent only visual color clouds with ellipsoidal splats. They **lack physical geometry**, meaning:
-- Characters and vehicles pass straight through them like ghosts.
-- Developers are forced to manually model separate low-poly colliders (`.fbx` / `.glb`) and painstakingly calibrate scale, rotation, and offsets in the game engine.
-- Managing multiple detached files per 3D asset leads to broken references and tedious workflow friction.
+## 💡 The Spatial Computing Challenge
+Traditional 3D Gaussian Splatting technologies generate photorealistic radiance fields, but suffer from a critical flaw: **they are purely visual and completely lack physical presence**.
+- **Ghost Assets:** Without physical geometry, game characters, vehicles, and physics actors pass straight through 3DGS scenes.
+- **Workflow Fragmentation:** Developers are forced to generate separate disconnected collision models, leading to desynchronized scaling, broken offsets, and laborious manual alignment in game engines.
+- **Production Overhead:** Managing detached visual and physics files across multi-platform pipelines introduces severe asset management friction.
 
-## 🚀 The Solution: `.py3s` Single-Container Format
-Developed by **PyGrassReal AI**, **`.py3s`** is a unified binary container that bundles:
+## 🚀 The PyGrassReal Innovation: Native Single-Container Standard
+Developed and standardized by **PyGrassReal AI**, the **`.py3s`** format solves this industry-wide bottleneck by encapsulating high-fidelity visual splatting and discrete collision geometry into a unified, high-performance binary container:
+
 1. **Visual Layer:** High-density, precision-quantized 3D Gaussian Splatting payload (*PyGrassReal Compressed 3DGS Payload*).
 2. **Physics Layer:** Precision collision geometry and convex hulls (*Embedded Spatial Collision Mesh*) for 100% solid navigation and raycasting.
 3. **Calibrated Alignment:** Embedded transform matrices (offset, rotation, scale) for instant 1:1 ground-aligned snapping.
 4. **Metadata & Preview:** Embedded spatial metadata descriptor and visual asset preview.
 
-> **Result:** Drag a single `.py3s` file into Unreal Engine 5 or a WebGL viewer, and it renders photorealistically with solid collision physics enabled **instantly in 1 click**.
+> **1-Click Engine Ready:** Drag a single `.py3s` file into Unreal Engine 5 or Web 3D Viewers — it renders photorealistically with solid collision physics enabled **instantly with zero manual calibration**.
 
 ---
 
@@ -85,14 +86,14 @@ This repository includes open-source reference implementations across multiple p
 Zero-dependency Python implementation for packing, unpacking, and CLI batch operations:
 
 ```bash
-# Unpack a .py3s file into component parts
-python python/py3s_codec.py unpack house.py3s -o ./output/
+# Unpack a .py3s container into component layers
+python python/py3s_codec.py unpack model.py3s -o ./output/
 
-# Pack SPZ visual and GLB collider into a single .py3s file
-python python/py3s_codec.py pack --spz house.spz --collider house_collider.glb --meta metadata.json -o house.py3s
+# Pack visual splat and collision geometry into a single .py3s container
+python python/py3s_codec.py pack --splat visual.bin --collider collision.bin --metadata metadata.json -o model.py3s
 
 # Inspect file contents and metadata
-python python/py3s_codec.py info house.py3s
+python python/py3s_codec.py info model.py3s
 ```
 
 ### 2. C++ SDK (`cpp/`)
@@ -109,17 +110,17 @@ Web / Three.js codec:
 
 ## 🎮 Unreal Engine 5 Quickstart
 
-Install the official **PyGrassReal SPZ & PY3S Unreal Plugin**:
+Install the official **PyGrassReal Unreal Engine Plugin**:
 1. Drag and drop any `.py3s` file directly into your Unreal Engine **Content Browser**.
 2. Drag the imported asset directly into the **Level Viewport**.
 3. The actor spawns instantly with:
-   - GPU covariance Gaussian Splatting visual layer.
-   - Invisible solid UCX collision mesh 1:1 coupled.
+   - Real-time GPU Gaussian Splatting visual layer.
+   - Invisible solid collision mesh coupled 1:1 with sub-millimeter precision.
    - Characters walk and stand on roofs, decks, and stairs immediately!
 
 ---
 
-## 📄 License & Attribution
+## 📜 License & Attribution
 The `.py3s` format specification, reference codecs, and tools are licensed under the **[MIT License](LICENSE)**.
 
 Developed with ❤️ by **[PyGrassReal AI Team](https://pygrassreal.ai)**.  
