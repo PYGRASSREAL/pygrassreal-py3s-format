@@ -5,17 +5,27 @@
 </a>
 
 # PyGrassReal 3D Splat (`.py3s`) File Format
+### The Foundational Root Asset Format of the PyGrassReal Ecosystem
 
 [![Specification](https://img.shields.io/badge/Specification-v1.0.0-blue.svg)](SPECIFICATION.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Magic String](https://img.shields.io/badge/Magic-PY3S-orange.svg)](#binary-layout)
 [![Engines](https://img.shields.io/badge/Engines-Unreal%205%20%7C%20Three.js%20%7C%20Python-purple.svg)](#implementations)
+[![Lineage](https://img.shields.io/badge/Lineage-PyGrassReal%20Foundational%20Root-gold.svg)](#-foundational-lineage-of-pygrassreal)
 
-**The Official Unified Single-Container Asset Standard Combining 3D Gaussian Splatting Visuals with 1:1 Physics Collision.**
+**The Official Foundational Single-Container Asset Standard Combining 3D Gaussian Splatting Visuals with 1:1 Physics Collision.**
 
 [📖 Read Specification](SPECIFICATION.md) • [🐍 Python SDK](python/) • [⚡ C++ Implementation](cpp/) • [🌐 TypeScript / Web](typescript/) • [🏛️ Official Platform](https://pygrassreal.ai)
 
 </div>
+
+---
+
+## 🏛️ Foundational Lineage of PyGrassReal
+`.py3s` is established as the **Foundational Root Format (ฟอร์แมตต้นตระกูลของระบบนิเวศ Spatial)** conceived, engineered, and standardized by **PyGrassReal AI**:
+- **The Core Parent Standard:** Conceived as the world's first single-container architecture uniting dense 3DGS photorealism with 1:1 solid physics collision.
+- **Universal Engine Standard:** Serves as the primary output standard across all PyGrassReal AI generative models (*Hanuman 2.0, Matchanu 2.0, Nilapat 2.0, Sida 1.5, Phralak 2.0*).
+- **Evolutionary Root (`.py*s` Series):** Forms the parent foundation for the upcoming generational extensions, including `.py4s` (4D dynamic splats & deformable physics).
 
 ---
 

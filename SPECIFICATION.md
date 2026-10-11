@@ -1,13 +1,25 @@
 # 📦 ข้อกำหนดโครงสร้างไฟล์ PyGrassReal 3D Splat (`.py3s`)
+### ฟอร์แมตต้นตระกูลของ PyGrassReal Spatial Ecosystem (Foundational Root Format)
 
 > **ลิขสิทธิ์**: Copyright (c) 2026 **PyGrassReal AI** (https://pygrassreal.ai). All Rights Reserved.  
 > **แบรนด์/ผู้พัฒนา**: **PyGrassReal**  
+> **สถานะ**: **ฟอร์แมตต้นตระกูล (Foundational Root Format)** ของระบบนิเวศ PyGrassReal Spatial Series  
 > **ชื่อฟอร์แมต**: PyGrassReal 3D Splat Single Container (`.py3s`)  
 > **MIME Media Type**: `model/vnd.pygrassreal.py3s`  
 > **เวอร์ชันสเปก**: `1.0.0`  
 > **Magic String**: `"PY3S"` (`0x50 0x59 0x33 0x53`)  
 > **Endianness**: Little-Endian (LE)  
 > **ขนาด Header**: 128 Bytes  
+
+---
+
+## 🏛️ ความเป็นมาและสายธารต้นตระกูล (Origin & Foundational Lineage)
+`.py3s` ได้รับการสถาปนาขึ้นโดย **PyGrassReal AI** ให้เป็น **"ฟอร์แมตต้นตระกูล (Ancestral / Foundational Root Standard)"** ของระบบนิเวศ Spatial Computing ทั้งหมด:
+1. **เสาหลักต้นแบบ (The Root Specification):** เป็นรากฐานข้อกำหนดมาตรฐานชุดแรกของโลกที่คิดค้นขึ้นเพื่อผสานภาพเรนเดอร์เสมือนจริงของ 3D Gaussian Splatting เข้ากับเรขาคณิตการชนทางฟิสิกส์ 1:1 ในคอนเทนเนอร์เดียว
+2. **ต้นทางของทุกโมเดลในเครือ PyGrassReal:** โมเดลปัญญาประดิษฐ์และเอนจิ้นทั้งหมดในเครือข่าย (อาทิ Hanuman 2.0, Matchanu 2.0, Nilapat 2.0, Sida 1.5, Phralak 2.0) ยึดถือ `.py3s` เป็นฟอร์แมตผลลัพธ์มาตรฐานสูงสุด
+3. **ต้นแบบสู่เจเนอเรชันถัดไป (`.py*s` Series):**
+   - **`.py3s` (Foundational Standard):** 3D Gaussian Splatting + 1:1 Static Collision Mesh
+   - **`.py4s` (Next-Gen Dynamic Evolution):** 4D Dynamic Splatting + Time-series Tracks + Deformable Physics Colliders
 
 ---
 
