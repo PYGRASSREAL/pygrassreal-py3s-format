@@ -22,7 +22,7 @@
 ---
 
 ## 🏛️ Foundational Lineage of PyGrassReal
-`.py3s` is established as the **Foundational Root Format (ฟอร์แมตต้นตระกูลของระบบนิเวศ Spatial)** conceived, engineered, and standardized by **PyGrassReal AI**:
+`.py3s` is established as the **Foundational Root Format (Ancestral Standard of the Spatial Computing Ecosystem)** conceived, engineered, and standardized by **PyGrassReal AI**:
 - **The Core Parent Standard:** Conceived as the world's first single-container architecture uniting dense 3DGS photorealism with 1:1 solid physics collision.
 - **Universal Engine Standard:** Serves as the primary output standard across all PyGrassReal AI generative models (*Hanuman 2.0, Matchanu 2.0, Nilapat 2.0, Sida 1.5, Phralak 2.0*).
 - **Evolutionary Root (`.py*s` Series):** Forms the parent foundation for the upcoming generational extensions, including `.py4s` (4D dynamic splats & deformable physics).
