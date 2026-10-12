@@ -10,7 +10,7 @@
 [![Specification](https://img.shields.io/badge/Specification-v1.0.0-blue.svg)](SPECIFICATION.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Copyright DIP](https://img.shields.io/badge/Copyright%20DIP-No.%20%E0%B8%A71.001520-success.svg)](docs/DIP_Copyright_Certificate_483001.pdf)
-[![IANA Media Type](https://img.shields.io/badge/IANA%20MIME-model%2Fvnd.pygrassreal.py3s-blue.svg)](https://tools.iana.org/public-view)
+[![IANA Media Type](https://img.shields.io/badge/IANA%20MIME-Pending%20Review%20(%231461427)-yellow.svg)](SPECIFICATION.md#iana-media-type-registration)
 [![Magic String](https://img.shields.io/badge/Magic-PY3S-orange.svg)](#binary-layout)
 [![Engines](https://img.shields.io/badge/Engines-Unreal%205%20%7C%20Three.js%20%7C%20Python-purple.svg)](#implementations)
 [![Lineage](https://img.shields.io/badge/Lineage-PyGrassReal%20Foundational%20Root-gold.svg)](#-foundational-lineage-of-pygrassreal)
@@ -23,9 +23,9 @@
 
 ---
 
-## 🏛️ Official Intellectual Property & Global Standardization
+## 🏛️ Official Intellectual Property & Standardization Status
 
-The `.py3s` file format specification and software implementation are officially recorded and globally standardized:
+The `.py3s` file format specification and software implementation are officially recorded and undergoing global standardization:
 
 <div align="center">
   <a href="docs/DIP_Copyright_Certificate_483001.pdf">
@@ -37,7 +37,7 @@ The `.py3s` file format specification and software implementation are officially
 | Authority / Standard Body | Identifier / Record | Status | Document |
 |---|---|---|---|
 | **Department of Intellectual Property (DIP)** | **Record No. ว1.001520** (App No. 483001) | **Officially Approved & Recorded** | [📄 View Certificate PDF](docs/DIP_Copyright_Certificate_483001.pdf) |
-| **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Assigned** (`[IANA #1461427]`) | [🌐 IANA Directory](https://tools.iana.org/public-view) |
+| **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Submitted / Under Review** (`Ticket #1461427`) | [📖 Read Registration Spec](SPECIFICATION.md#iana-media-type-registration) |
 | **Creator & Rights Holder** | **Prachaya Buapad (นายปรัชญา บัวผัด)** / **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
 
 > **Grant & Investment Verification:** This repository serves as the verified technical and legal baseline for Google Cloud Startup Program and NVIDIA Inception Program evaluators.
