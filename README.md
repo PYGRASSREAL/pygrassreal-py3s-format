@@ -140,7 +140,7 @@ The `.py3s` file format specification and software implementation are officially
 |---|---|---|---|
 | **Department of Intellectual Property (DIP)** | **Record No. ว1.001520** (App No. 483001) | **Officially Approved & Recorded** | [📄 View Certificate PDF](docs/DIP_Copyright_Certificate_483001.pdf) |
 | **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Submitted / Under Review** (`Ticket #1461428`) | [📖 Registration Spec](SPECIFICATION.md#iana-media-type-registration) |
-| **Creator & Rights Holder** | **Prachaya Buapad (นายปรัชญา บัวผัด)** / **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
+| **Creator & Rights Holder** | **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
 
 <details>
 <summary><b>🔍 Click to view Official Department of Intellectual Property (DIP) Certificate (ตราครุฑ)</b></summary>
