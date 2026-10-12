@@ -154,8 +154,6 @@ The `.py3s` file format specification and software implementation are officially
 </div>
 </details>
 
-> **Grant & Investment Verification:** This repository serves as the verified technical and legal baseline for Google Cloud Startup Program and NVIDIA Inception Program evaluators.
-
 ---
 
 ## 📜 License & Attribution
