@@ -1,5 +1,7 @@
 # Internal filing guides & drafts (Private / Not for public repo)
-docs/
+docs/*
+!docs/DIP_Copyright_Certificate_483001.pdf
+!docs/DIP_Copyright_Certificate_483001.png
 
 # Python cache & virtual environments
 __pycache__/

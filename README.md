@@ -9,6 +9,8 @@
 
 [![Specification](https://img.shields.io/badge/Specification-v1.0.0-blue.svg)](SPECIFICATION.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Copyright DIP](https://img.shields.io/badge/Copyright%20DIP-No.%20%E0%B8%A71.001520-success.svg)](docs/DIP_Copyright_Certificate_483001.pdf)
+[![IANA Media Type](https://img.shields.io/badge/IANA%20MIME-model%2Fvnd.pygrassreal.py3s-blue.svg)](https://tools.iana.org/public-view)
 [![Magic String](https://img.shields.io/badge/Magic-PY3S-orange.svg)](#binary-layout)
 [![Engines](https://img.shields.io/badge/Engines-Unreal%205%20%7C%20Three.js%20%7C%20Python-purple.svg)](#implementations)
 [![Lineage](https://img.shields.io/badge/Lineage-PyGrassReal%20Foundational%20Root-gold.svg)](#-foundational-lineage-of-pygrassreal)
@@ -18,6 +20,27 @@
 [📖 Read Specification](SPECIFICATION.md) • [🐍 Python SDK](python/) • [⚡ C++ Implementation](cpp/) • [🌐 TypeScript / Web](typescript/) • [🏛️ Official Platform](https://pygrassreal.ai)
 
 </div>
+
+---
+
+## 🏛️ Official Intellectual Property & Global Standardization
+
+The `.py3s` file format specification and software implementation are officially recorded and globally standardized:
+
+<div align="center">
+  <a href="docs/DIP_Copyright_Certificate_483001.pdf">
+    <img src="docs/DIP_Copyright_Certificate_483001.png" alt="Official DIP Copyright Certificate (ว1.001520)" width="460" />
+  </a>
+  <p><em>Official Department of Intellectual Property (DIP) Certificate of Copyright Recordation (No. ว1.001520 / Application No. 483001)</em></p>
+</div>
+
+| Authority / Standard Body | Identifier / Record | Status | Document |
+|---|---|---|---|
+| **Department of Intellectual Property (DIP)** | **Record No. ว1.001520** (App No. 483001) | **Officially Approved & Recorded** | [📄 View Certificate PDF](docs/DIP_Copyright_Certificate_483001.pdf) |
+| **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Assigned** (`[IANA #1461427]`) | [🌐 IANA Directory](https://tools.iana.org/public-view) |
+| **Creator & Rights Holder** | **Prachaya Buapad (นายปรัชญา บัวผัด)** / **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
+
+> **Grant & Investment Verification:** This repository serves as the verified technical and legal baseline for Google Cloud Startup Program and NVIDIA Inception Program evaluators.
 
 ---
 
