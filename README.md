@@ -142,17 +142,14 @@ The `.py3s` file format specification and software implementation are officially
 | **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Submitted / Under Review** (`Ticket #1461428`) | [📖 Registration Spec](SPECIFICATION.md#iana-media-type-registration) |
 | **Creator & Rights Holder** | **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
 
-<details>
-<summary><b>🔍 Click to view Official Department of Intellectual Property (DIP) Certificate (ตราครุฑ)</b></summary>
-<br>
 <div align="center">
+  <br />
   <a href="docs/DIP_Copyright_Certificate_483001.pdf">
     <img src="docs/DIP_Copyright_Certificate_483001.png" alt="Official DIP Copyright Certificate (ว1.001520)" width="440" style="border: 1px solid #444; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" />
   </a>
   <p><em>Official Department of Intellectual Property (DIP) Certificate of Copyright Recordation (No. ว1.001520 / Application No. 483001)</em></p>
   <p><a href="docs/DIP_Copyright_Certificate_483001.pdf">📥 Download Official Certificate (PDF)</a></p>
 </div>
-</details>
 
 ---
 
