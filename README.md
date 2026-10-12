@@ -23,27 +23,6 @@
 
 ---
 
-## 🏛️ Official Intellectual Property & Standardization Status
-
-The `.py3s` file format specification and software implementation are officially recorded and undergoing global standardization:
-
-<div align="center">
-  <a href="docs/DIP_Copyright_Certificate_483001.pdf">
-    <img src="docs/DIP_Copyright_Certificate_483001.png" alt="Official DIP Copyright Certificate (ว1.001520)" width="460" />
-  </a>
-  <p><em>Official Department of Intellectual Property (DIP) Certificate of Copyright Recordation (No. ว1.001520 / Application No. 483001)</em></p>
-</div>
-
-| Authority / Standard Body | Identifier / Record | Status | Document |
-|---|---|---|---|
-| **Department of Intellectual Property (DIP)** | **Record No. ว1.001520** (App No. 483001) | **Officially Approved & Recorded** | [📄 View Certificate PDF](docs/DIP_Copyright_Certificate_483001.pdf) |
-| **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Submitted / Under Review** (`Ticket #1461427`) | [📖 Read Registration Spec](SPECIFICATION.md#iana-media-type-registration) |
-| **Creator & Rights Holder** | **Prachaya Buapad (นายปรัชญา บัวผัด)** / **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
-
-> **Grant & Investment Verification:** This repository serves as the verified technical and legal baseline for Google Cloud Startup Program and NVIDIA Inception Program evaluators.
-
----
-
 ## 🏛️ Foundational Lineage of PyGrassReal
 `.py3s` is established as the **Foundational Root Format (Ancestral Standard of the Spatial Computing Ecosystem)** conceived, engineered, and standardized by **PyGrassReal AI**:
 - **The Core Parent Standard:** Conceived as the world's first single-container architecture uniting dense 3DGS photorealism with 1:1 solid physics collision.
@@ -153,8 +132,35 @@ Install the official **PyGrassReal Unreal Engine Plugin**:
 
 ---
 
+## 🏛️ Intellectual Property & Standardization Status
+
+The `.py3s` file format specification and software implementation are officially recorded by the Department of Intellectual Property (DIP) and undergoing global standardization:
+
+| Authority / Standard Body | Identifier / Record | Status | Document |
+|---|---|---|---|
+| **Department of Intellectual Property (DIP)** | **Record No. ว1.001520** (App No. 483001) | **Officially Approved & Recorded** | [📄 View Certificate PDF](docs/DIP_Copyright_Certificate_483001.pdf) |
+| **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Submitted / Under Review** (`Ticket #1461427`) | [📖 Registration Spec](SPECIFICATION.md#iana-media-type-registration) |
+| **Creator & Rights Holder** | **Prachaya Buapad (นายปรัชญา บัวผัด)** / **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
+
+<details>
+<summary><b>🔍 Click to view Official Department of Intellectual Property (DIP) Certificate (ตราครุฑ)</b></summary>
+<br>
+<div align="center">
+  <a href="docs/DIP_Copyright_Certificate_483001.pdf">
+    <img src="docs/DIP_Copyright_Certificate_483001.png" alt="Official DIP Copyright Certificate (ว1.001520)" width="440" style="border: 1px solid #444; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" />
+  </a>
+  <p><em>Official Department of Intellectual Property (DIP) Certificate of Copyright Recordation (No. ว1.001520 / Application No. 483001)</em></p>
+  <p><a href="docs/DIP_Copyright_Certificate_483001.pdf">📥 Download Official Certificate (PDF)</a></p>
+</div>
+</details>
+
+> **Grant & Investment Verification:** This repository serves as the verified technical and legal baseline for Google Cloud Startup Program and NVIDIA Inception Program evaluators.
+
+---
+
 ## 📜 License & Attribution
 The `.py3s` format specification, reference codecs, and tools are licensed under the **[MIT License](LICENSE)**.
 
 Developed with ❤️ by **[PyGrassReal AI Team](https://pygrassreal.ai)**.  
 *Copyright (c) 2026 PyGrassReal AI. All Rights Reserved.*
+
