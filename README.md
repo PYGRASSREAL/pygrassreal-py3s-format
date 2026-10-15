@@ -10,9 +10,9 @@
 [![Specification](https://img.shields.io/badge/Specification-v1.0.0-blue.svg)](SPECIFICATION.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Copyright DIP](https://img.shields.io/badge/Copyright%20DIP-No.%20%E0%B8%A71.001520-success.svg)](docs/DIP_Copyright_Certificate_483001.pdf)
-[![IANA Media Type](https://img.shields.io/badge/IANA%20MIME-Pending%20Review%20(%231461428)-yellow.svg)](SPECIFICATION.md#iana-media-type-registration)
+[![IANA Media Type](https://img.shields.io/badge/IANA%20MIME-Pending%20Review%20(%231461427)-yellow.svg)](SPECIFICATION.md#iana-media-type-registration)
 [![Magic String](https://img.shields.io/badge/Magic-PY3S-orange.svg)](#binary-layout)
-[![Engines](https://img.shields.io/badge/Engines-Unreal%205%20%7C%20Three.js%20%7C%20Python-purple.svg)](#implementations)
+[![Engines](https://img.shields.io/badge/Engines-Unreal%205%20%7C%20Unity%20%7C%20Three.js%20%7C%20Python-purple.svg)](#implementations)
 [![Lineage](https://img.shields.io/badge/Lineage-PyGrassReal%20Foundational%20Root-gold.svg)](#-foundational-lineage-of-pygrassreal)
 
 **The Official Foundational Single-Container Asset Standard Combining 3D Gaussian Splatting Visuals with 1:1 Physics Collision.**
@@ -32,20 +32,20 @@
 ---
 
 ## 💡 The Spatial Computing Challenge
-Traditional 3D Gaussian Splatting technologies generate photorealistic radiance fields, but suffer from a critical flaw: **they are purely visual and completely lack physical presence**.
+Traditional 3D Gaussian Splatting technologies generate photorealistic radiance fields, but suffer from a critical flaw: **they are purely visual, massive in file size (often 50-200MB+ per object in raw PLY), and completely lack physical presence**.
 - **Ghost Assets:** Without physical geometry, game characters, vehicles, and physics actors pass straight through 3DGS scenes.
 - **Workflow Fragmentation:** Developers are forced to generate separate disconnected collision models, leading to desynchronized scaling, broken offsets, and laborious manual alignment in game engines.
-- **Production Overhead:** Managing detached visual and physics files across multi-platform pipelines introduces severe asset management friction.
+- **Bandwidth & Storage Bloat:** Raw PLY/SPLAT files create severe transmission and memory bottlenecks on web viewports, mobile devices, and runtime streaming.
 
 ## 🚀 The PyGrassReal Innovation: Native Single-Container Standard
-Developed and standardized by **PyGrassReal AI**, the **`.py3s`** format solves this industry-wide bottleneck by encapsulating high-fidelity visual splatting and discrete collision geometry into a unified, high-performance binary container:
+Developed and standardized by **PyGrassReal AI**, the **`.py3s`** format solves this industry-wide bottleneck by encapsulating high-fidelity visual splatting and discrete collision geometry into a unified, ultra-lightweight binary container:
 
-1. **Visual Layer:** High-density, precision-quantized 3D Gaussian Splatting payload (*PyGrassReal Compressed 3DGS Payload*).
-2. **Physics Layer:** Precision collision geometry and convex hulls (*Embedded Spatial Collision Mesh*) for 100% solid navigation and raycasting.
+1. **Visual Layer (Ultra-Lightweight):** High-density, precision-quantized 3D Gaussian Splatting payload (*Zstd Compressed 3DGS Payload*). Reduces raw PLY volume by up to **90%** (typically down to **3–5 MB**), enabling real-time streaming and instant memory residency.
+2. **Physics Layer:** Precision collision geometry and convex hulls (*Embedded Spatial Collision Mesh*) for 100% solid navigation, raycasting, and character locomotion.
 3. **Calibrated Alignment:** Embedded transform matrices (offset, rotation, scale) for instant 1:1 ground-aligned snapping.
 4. **Metadata & Preview:** Embedded spatial metadata descriptor and visual asset preview.
 
-> **1-Click Engine Ready:** Drag a single `.py3s` file into Unreal Engine 5 or Web 3D Viewers — it renders photorealistically with solid collision physics enabled **instantly with zero manual calibration**.
+> **1-Click Engine Ready:** Drag a single `.py3s` file into Unreal Engine 5, Unity, or Web 3D Viewers — it renders photorealistically with solid collision physics enabled **instantly with zero manual calibration**.
 
 ---
 
@@ -139,7 +139,7 @@ The `.py3s` file format specification and software implementation are officially
 | Authority / Standard Body | Identifier / Record | Status | Document |
 |---|---|---|---|
 | **Department of Intellectual Property (DIP)** | **Record No. ว1.001520** (App No. 483001) | **Officially Approved & Recorded** | [📄 View Certificate PDF](docs/DIP_Copyright_Certificate_483001.pdf) |
-| **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Submitted / Under Review** (`Ticket #1461428`) | [📖 Registration Spec](SPECIFICATION.md#iana-media-type-registration) |
+| **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Submitted / Under Review** (`Ticket #1461427`) | [📖 Registration Spec](SPECIFICATION.md#iana-media-type-registration) |
 | **Creator & Rights Holder** | **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
 
 <div align="center">
