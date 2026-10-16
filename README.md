@@ -19,6 +19,13 @@
 
 [📖 Read Specification](SPECIFICATION.md) • [🐍 Python SDK](python/) • [⚡ C++ Implementation](cpp/) • [🌐 TypeScript / Web](typescript/) • [🏛️ Official Platform](https://pygrassreal.ai)
 
+<br/>
+
+| **Visual Layer (3D Gaussian Splatting)** | **Dual-Layer Architecture (Visual + 1:1 Physics Collider)** |
+|:---:|:---:|
+| <img src="assets/py3s_visual_splat.png" alt="Py3S Visual 3DGS Layer" width="420" /> | <img src="assets/py3s_dual_layer_collision.png" alt="Py3S Dual-Layer Physics Collider" width="420" /> |
+| *Photorealistic radiance field (Zstd compressed, ultra-lightweight)* | *100% solid collision hitbox for Unreal Engine & real-time physics* |
+
 </div>
 
 ---
