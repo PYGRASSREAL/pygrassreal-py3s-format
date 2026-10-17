@@ -9,6 +9,7 @@
 
 [![Specification](https://img.shields.io/badge/Specification-v1.0.0-blue.svg)](SPECIFICATION.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![NVIDIA Inception](https://img.shields.io/badge/NVIDIA%20Inception-Program%20Member-76B900?logo=nvidia&logoColor=white)](https://www.nvidia.com/en-us/startups/)
 [![Copyright DIP](https://img.shields.io/badge/Copyright%20DIP-No.%20%E0%B8%A71.001520-success.svg)](docs/DIP_Copyright_Certificate_483001.pdf)
 [![IANA Media Type](https://img.shields.io/badge/IANA%20MIME-Pending%20Review%20(%231461427)-yellow.svg)](SPECIFICATION.md#iana-media-type-registration)
 [![Magic String](https://img.shields.io/badge/Magic-PY3S-orange.svg)](#binary-layout)
@@ -146,6 +147,7 @@ The `.py3s` file format specification and software implementation are officially
 | Authority / Standard Body | Identifier / Record | Status | Document |
 |---|---|---|---|
 | **Department of Intellectual Property (DIP)** | **Record No. ว1.001520** (App No. 483001) | **Officially Approved & Recorded** | [📄 View Certificate PDF](docs/DIP_Copyright_Certificate_483001.pdf) |
+| **NVIDIA Inception Program** | **Official Program Member** | **Approved & Active Member** | [🟢 Program Details](https://www.nvidia.com/en-us/startups/) |
 | **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Submitted / Under Review** (`Ticket #1461427`) | [📖 Registration Spec](SPECIFICATION.md#iana-media-type-registration) |
 | **Creator & Rights Holder** | **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
 
@@ -156,6 +158,11 @@ The `.py3s` file format specification and software implementation are officially
   </a>
   <p><em>Official Department of Intellectual Property (DIP) Certificate of Copyright Recordation (No. ว1.001520 / Application No. 483001)</em></p>
   <p><a href="docs/DIP_Copyright_Certificate_483001.pdf">📥 Download Official Certificate (PDF)</a></p>
+  <br />
+  <a href="https://www.nvidia.com/en-us/startups/">
+    <img src="assets/nvidia-inception-program-badge-rgb-for-screen.svg" alt="NVIDIA Inception Program Member" width="340" style="background: #ffffff; border-radius: 8px; padding: 10px 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);" />
+  </a>
+  <p><strong>PyGrassReal is a member of the NVIDIA Inception program</strong>, nurturing cutting-edge startups revolutionizing spatial computing, neural rendering, and generative 3D technologies.</p>
 </div>
 
 ---
