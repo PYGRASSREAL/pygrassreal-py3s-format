@@ -27,6 +27,14 @@
 | <img src="assets/py3s_visual_splat.png" alt="Py3S Visual 3DGS Layer" width="420" /> | <img src="assets/py3s_dual_layer_collision.png" alt="Py3S Dual-Layer Physics Collider" width="420" /> |
 | *Photorealistic radiance field (Zstd compressed, ultra-lightweight)* | *100% solid collision hitbox for Unreal Engine & real-time physics* |
 
+<br/>
+
+<a href="https://www.nvidia.com/en-us/startups/">
+  <img src="assets/nvidia-inception-program-badge-rgb-for-screen.svg" alt="NVIDIA Inception Program Member" width="340" style="background: #ffffff; border-radius: 8px; padding: 10px 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);" />
+</a>
+
+<p><strong>PyGrassReal is a member of the NVIDIA Inception program</strong>, nurturing cutting-edge startups revolutionizing spatial computing, neural rendering, and generative 3D technologies.</p>
+
 </div>
 
 ---
@@ -158,11 +166,6 @@ The `.py3s` file format specification and software implementation are officially
   </a>
   <p><em>Official Department of Intellectual Property (DIP) Certificate of Copyright Recordation (No. ว1.001520 / Application No. 483001)</em></p>
   <p><a href="docs/DIP_Copyright_Certificate_483001.pdf">📥 Download Official Certificate (PDF)</a></p>
-  <br />
-  <a href="https://www.nvidia.com/en-us/startups/">
-    <img src="assets/nvidia-inception-program-badge-rgb-for-screen.svg" alt="NVIDIA Inception Program Member" width="340" style="background: #ffffff; border-radius: 8px; padding: 10px 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);" />
-  </a>
-  <p><strong>PyGrassReal is a member of the NVIDIA Inception program</strong>, nurturing cutting-edge startups revolutionizing spatial computing, neural rendering, and generative 3D technologies.</p>
 </div>
 
 ---
