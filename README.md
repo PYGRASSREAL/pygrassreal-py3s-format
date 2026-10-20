@@ -29,6 +29,13 @@
 
 <br/>
 
+### 🎮 Live In-Engine Verification: Unreal Engine 5 (1:1 Physics Collision Drop-in)
+*Direct Drag-and-Drop `.py3s` container import into Unreal Engine 5 Content Browser with instant radiance field rendering and solid collision:*
+
+https://github.com/PYGRASSREAL/pygrassreal-py3s-format/raw/main/assets/Demo_Format_py3s_720p.mp4
+
+<br/>
+
 <a href="https://www.nvidia.com/en-us/startups/">
   <img src="assets/nvidia-inception-program-badge-rgb-for-screen.svg" alt="NVIDIA Inception Program Member" width="340" style="background: #ffffff; border-radius: 8px; padding: 10px 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);" />
 </a>
