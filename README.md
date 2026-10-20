@@ -36,9 +36,6 @@
 
 <div align="center">
   <img src="assets/py3s_unreal_demo.gif" alt="Unreal Engine 5 .py3s In-Engine Live Demo" width="850" style="border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.5); border: 1px solid rgba(56,189,248,0.3);" />
-  <p>
-    <a href="assets/Demo_Format_py3s_720p.mp4">📥 Download High-Resolution Video (2.77 MB MP4)</a>
-  </p>
 </div>
 
 <br/>
