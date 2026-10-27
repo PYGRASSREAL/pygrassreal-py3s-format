@@ -11,7 +11,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![NVIDIA Inception](https://img.shields.io/badge/NVIDIA%20Inception-Program%20Member-76B900?logo=nvidia&logoColor=white)](https://www.nvidia.com/en-us/startups/)
 [![Copyright DIP](https://img.shields.io/badge/Copyright%20DIP-No.%20%E0%B8%A71.001520-success.svg)](docs/DIP_Copyright_Certificate_483001.pdf)
-[![IANA Media Type](https://img.shields.io/badge/IANA%20MIME-Pending%20Review%20(%231461427)-yellow.svg)](SPECIFICATION.md#iana-media-type-registration)
+[![IANA Media Type](https://img.shields.io/badge/IANA%20MIME-Approved%20(model%2Fvnd.pygrassreal.py3s)-success.svg)](https://www.iana.org/assignments/media-types/media-types.xhtml)
 [![Magic String](https://img.shields.io/badge/Magic-PY3S-orange.svg)](#binary-layout)
 [![Engines](https://img.shields.io/badge/Engines-Unreal%205%20%7C%20Unity%20%7C%20Three.js%20%7C%20Python-purple.svg)](#implementations)
 [![Lineage](https://img.shields.io/badge/Lineage-PyGrassReal%20Foundational%20Root-gold.svg)](#-foundational-lineage-of-pygrassreal)
@@ -167,7 +167,7 @@ The `.py3s` file format specification and software implementation are officially
 |---|---|---|---|
 | **Department of Intellectual Property (DIP)** | **Record No. ว1.001520** (App No. 483001) | **Officially Approved & Recorded** | [📄 View Certificate PDF](docs/DIP_Copyright_Certificate_483001.pdf) |
 | **NVIDIA Inception Program** | **Official Program Member** | **Approved & Active Member** | [🟢 Program Details](https://www.nvidia.com/en-us/startups/) |
-| **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Submitted / Under Review** (`Ticket #1461427`) | [📖 Registration Spec](SPECIFICATION.md#iana-media-type-registration) |
+| **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py3s` | **Officially Approved** (`[IANA #1461427]`) | [🌐 IANA Directory](https://www.iana.org/assignments/media-types/media-types.xhtml) |
 | **Creator & Rights Holder** | **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
 
 <div align="center">
