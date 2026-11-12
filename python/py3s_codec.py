@@ -97,9 +97,22 @@ def _has_v2_features(metadata: Dict[str, Any]) -> bool:
     return any(bool(metadata.get(key)) for key in v2_keys)
 
 
-def _resolve_flags(metadata: Dict[str, Any], print_3mf_bytes: bytes, enable_integrity: bool) -> int:
+def _resolve_flags(
+    metadata: Dict[str, Any],
+    print_3mf_bytes: bytes,
+    enable_integrity: bool,
+    compatible_v1: bool = False,
+) -> int:
     col_format = str(metadata.get("collision", {}).get("format", "glb")).lower()
     flags = FLAG_SPZ_ZSTD | (FLAG_COLLIDER_FBX if col_format == "fbx" else FLAG_COLLIDER_GLB)
+
+    if compatible_v1:
+        if print_3mf_bytes:
+            flags |= FLAG_PRINT_3MF
+        telemetry = metadata.get("telemetryProfile")
+        if isinstance(telemetry, dict) and telemetry.get("autoHydrateOnMount", False):
+            flags |= FLAG_AUTO_HYDRATE_ON_MOUNT
+        return flags & 0xFFFFFFFF
 
     if print_3mf_bytes:
         flags |= FLAG_PRINT_3MF | FLAG_MFG_PRINT3D_READY
@@ -280,6 +293,7 @@ class Py3sContainer:
         print_3mf_bytes: bytes = b"",
         integrity_checksum: Optional[bool] = None,
         secret_key: Optional[Union[str, bytes]] = None,
+        compatible_v1: bool = False,
     ) -> bytes:
         meta_json = json.dumps(metadata_dict, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
         if len(meta_json) > MAX_METADATA_BYTES:
@@ -287,14 +301,17 @@ class Py3sContainer:
 
         version_str = str(metadata_dict.get("version", ""))
         is_explicit_v1 = (
-            version_str.startswith("1.")
-            and not _has_v2_features(metadata_dict)
-            and integrity_checksum is not True
+            compatible_v1
+            or (
+                version_str.startswith("1.")
+                and not _has_v2_features(metadata_dict)
+                and integrity_checksum is not True
+            )
         )
         is_v2 = not is_explicit_v1
         version_major = VERSION_MAJOR if is_v2 else 1
         version_minor = VERSION_MINOR if is_v2 else (1 if print_3mf_bytes else 0)
-        enable_integrity = is_v2 if integrity_checksum is None else bool(integrity_checksum)
+        enable_integrity = bool(integrity_checksum) if compatible_v1 else (is_v2 if integrity_checksum is None else bool(integrity_checksum))
 
         current_offset = HEADER_SIZE
         spz_offset = current_offset
@@ -323,7 +340,7 @@ class Py3sContainer:
         if print_3mf_bytes:
             section_count += 1
 
-        flags = _resolve_flags(metadata_dict, print_3mf_bytes, enable_integrity)
+        flags = _resolve_flags(metadata_dict, print_3mf_bytes, enable_integrity, compatible_v1=compatible_v1)
         payload = spz_bytes + collider_bytes + meta_json + thumbnail_bytes + print_3mf_bytes
 
         header_zero = struct.pack(

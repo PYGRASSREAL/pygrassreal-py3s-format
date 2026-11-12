@@ -295,8 +295,10 @@ export interface Py3sMetadata {
     format: '3mf';
     unit: 'millimeter';
     heightMm: number;
-    source: 'reconstructed-mesh';
-    validation: 'closed-oriented-edge-manifold';
+    source: 'reconstructed-mesh' | 'local-print-cache';
+    validation: string;
+    cacheKey?: string;
+    print3mfBytes?: number;
     // Topology checks do not establish minimum thickness or mechanical strength.
     requiresSlicerReview: true;
   };
@@ -314,6 +316,11 @@ export interface Py3sContainerData {
 export interface Py3sPackOptions {
   /** Force enabling or disabling CRC-32 integrity fields (defaults to true for v2.0). */
   integrityChecksum?: boolean;
+  /**
+   * Pack with v1.x binary header (VersionMajor = 1, clean reserved bytes, core v1 flags)
+   * for Unreal Engine 5 / Unity v1.x plugin compatibility while preserving Section 3 JSON metadata.
+   */
+  compatibleV1?: boolean;
 }
 
 export interface Py3sHeaderInfo {
@@ -360,11 +367,21 @@ function hasV2FeatureFields(metadata: Py3sMetadata): boolean {
   );
 }
 
-function resolveFlags(data: Py3sContainerData, enableIntegrityChecksum: boolean): number {
+function resolveFlags(data: Py3sContainerData, enableIntegrityChecksum: boolean, compatibleV1 = false): number {
   const meta = data.metadata;
   const isFbx = meta.collision?.format?.toLowerCase() === 'fbx';
   let flags = PY3S_FLAG_SPZ_ZSTD | (isFbx ? PY3S_FLAG_COLLIDER_FBX : PY3S_FLAG_COLLIDER_GLB);
   const printBytes = data.print3mfData;
+
+  if (compatibleV1) {
+    if (printBytes && printBytes.byteLength > 0) {
+      flags |= PY3S_FLAG_PRINT_3MF;
+    }
+    if ((meta.telemetryProfile as { autoHydrateOnMount?: boolean } | undefined)?.autoHydrateOnMount) {
+      flags |= PY3S_FLAG_AUTO_HYDRATE_ON_MOUNT;
+    }
+    return flags >>> 0;
+  }
 
   if (printBytes && printBytes.byteLength > 0) {
     flags |= PY3S_FLAG_PRINT_3MF | PY3S_FLAG_MFG_PRINT3D_READY;
@@ -457,12 +474,13 @@ export class Py3sCodec {
     const thumbBytes = data.thumbnailData ?? new Uint8Array(0);
     const printBytes = data.print3mfData ?? new Uint8Array(0);
 
+    const compatibleV1 = options?.compatibleV1 === true;
     const versionString = data.metadata.version || '';
-    const isExplicitV1 = /^1\./.test(versionString) && !hasV2FeatureFields(data.metadata) && options?.integrityChecksum !== true;
+    const isExplicitV1 = compatibleV1 || (/^1\./.test(versionString) && !hasV2FeatureFields(data.metadata) && options?.integrityChecksum !== true);
     const isV2 = !isExplicitV1;
     const versionMajor = isV2 ? PY3S_VERSION_MAJOR : 1;
     const versionMinor = isV2 ? PY3S_VERSION_MINOR : (printBytes.byteLength > 0 ? 1 : 0);
-    const enableIntegrity = options?.integrityChecksum ?? isV2;
+    const enableIntegrity = compatibleV1 ? (options?.integrityChecksum === true) : (options?.integrityChecksum ?? isV2);
 
     let currentOffset = PY3S_HEADER_SIZE;
 
@@ -509,7 +527,7 @@ export class Py3sCodec {
 
     // 3. Section count & unified bit flags
     view.setUint32(8, sectionCount, true);
-    const flags = resolveFlags(data, enableIntegrity);
+    const flags = resolveFlags(data, enableIntegrity, compatibleV1);
     view.setUint32(12, flags, true);
 
     // 4. Offsets and sizes (uint64 little endian)

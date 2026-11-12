@@ -135,6 +135,11 @@ python python/py3s_codec.py pack --splat visual.bin --collider collision.bin --m
 
 # Inspect file contents and metadata
 python python/py3s_codec.py info model.py3s
+
+# Open embedded or local-print-cache Print 3D (.3mf) directly in Creality Print
+python python/py3s_creality_bridge.py model.py3s --launch
+# Windows quick launcher (drag & drop .py3s or interactive file picker):
+python/Open_PY3S_in_CrealityPrint.bat
 ```
 
 ### 2. C++ SDK (`cpp/`)

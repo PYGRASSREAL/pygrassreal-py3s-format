@@ -170,7 +170,7 @@ class PrintContainerTests(unittest.TestCase):
             Py3sContainer.unpack_verified(bytes(forged), secret)
 
         # 4. Creality Bridge path confinement & strict Print 3D enforcement
-        bridge_path = Path(__file__).resolve().parents[2] / 'FORMAT_PY3S' / 'python' / 'py3s_creality_bridge.py'
+        bridge_path = Path(__file__).resolve().parent / 'py3s_creality_bridge.py'
         spec = importlib.util.spec_from_file_location('py3s_creality_bridge_test', str(bridge_path))
         bridge_mod = importlib.util.module_from_spec(spec)
         assert spec and spec.loader
@@ -198,6 +198,80 @@ class PrintContainerTests(unittest.TestCase):
             collider_only.write_bytes(Py3sContainer.pack(b'spz', b'glb_bytes', {'format': 'py3s', 'version': '2.0.0', 'asset': {'name': 'no_print'}}))
             with self.assertRaisesRegex(ValueError, 'No Print 3D'):
                 bridge_mod.send_py3s_to_creality(str(collider_only), auto_launch=False)
+
+    def test_compatible_v1_header_and_local_print_cache_bridge(self):
+        # 1. compatible_v1 emits clean v1.0 headers while keeping v2 JSON metadata
+        v1_compat = Py3sContainer.pack(
+            b'spz_payload',
+            b'glb_payload',
+            {
+                'format': 'py3s',
+                'version': '1.0.0',
+                'asset': {'name': 'thai-temple-gate'},
+                'collision': {'format': 'glb'},
+                'systemPrompt': 'Print cleanly at 0.16 mm.',
+                'printProfile': {'material': 'PLA', 'layerHeightMm': 0.16, 'infillPercent': 20},
+                'aiAgentContext': {'orchestratedBy': 'Hanuman-1.5'},
+            },
+            thumbnail_bytes=b'png',
+            compatible_v1=True,
+        )
+        unpacked = Py3sContainer.unpack(v1_compat)
+        self.assertEqual(unpacked.version_major, 1)
+        self.assertEqual(unpacked.version_minor, 0)
+        self.assertEqual(unpacked.flags, 0x03)
+        self.assertEqual(v1_compat[0x50:0x80], b'\x00' * 0x30)
+        self.assertEqual(unpacked.metadata['systemPrompt'], 'Print cleanly at 0.16 mm.')
+
+        # 2. Local print-cache hydration in Creality Print bridge without embedding huge 3MF inside .py3s
+        bridge_path = Path(__file__).resolve().parent / 'py3s_creality_bridge.py'
+        spec = importlib.util.spec_from_file_location('py3s_creality_bridge_cache_test', str(bridge_path))
+        bridge_mod = importlib.util.module_from_spec(spec)
+        assert spec and spec.loader
+        spec.loader.exec_module(bridge_mod)
+
+        valid_3mf = io.BytesIO()
+        with zipfile.ZipFile(valid_3mf, 'w') as zf:
+            zf.writestr('3D/3dmodel.model', '<model unit="millimeter"></model>')
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            cache_dir = tmp_path / '.pygrassreal' / 'print-cache'
+            cache_dir.mkdir(parents=True, exist_ok=True)
+            (cache_dir / 'gate_cached.3mf').write_bytes(valid_3mf.getvalue())
+
+            cached_py3s = tmp_path / 'gate_seed.py3s'
+            cached_py3s.write_bytes(
+                Py3sContainer.pack(
+                    b'spz_payload',
+                    b'glb_payload',
+                    {
+                        'format': 'py3s',
+                        'version': '1.0.0',
+                        'asset': {'name': 'gate_cached_model'},
+                        'printing': {
+                            'format': '3mf',
+                            'unit': 'millimeter',
+                            'heightMm': 150,
+                            'source': 'local-print-cache',
+                            'validation': 'closed-oriented-edge-manifold',
+                            'cacheKey': 'gate_cached.3mf',
+                            'requiresSlicerReview': True,
+                        },
+                    },
+                    compatible_v1=True,
+                )
+            )
+
+            orig_expanduser = os.path.expanduser
+            try:
+                os.path.expanduser = lambda path: str(tmp_path) + path[1:] if path.startswith('~') else orig_expanduser(path)
+                out_path = bridge_mod.send_py3s_to_creality(str(cached_py3s), auto_launch=False)
+                self.assertTrue(os.path.isfile(out_path))
+                if os.path.exists(out_path):
+                    os.remove(out_path)
+            finally:
+                os.path.expanduser = orig_expanduser
 
 
 if __name__ == '__main__':
