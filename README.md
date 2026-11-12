@@ -20,7 +20,9 @@
 
 [📖 Read Specification](SPECIFICATION.md) • [🐍 Python SDK](python/) • [⚡ C++ Implementation](cpp/) • [🌐 TypeScript / Web](typescript/) • [🏛️ Official Platform](https://pygrassreal.ai)
 
-**v1.1 print extension:** TypeScript and Python can embed a prepared 3MF alongside the visual splat and collider. The app's **Print 3D (.py3s)** action saves a single PY3S file with all print data inside, without downloading a separate 3MF. Printing tools must support reading PY3S. See [3DGS to print: research, workflow and limitations](docs/3DGS_TO_PRINT.md). The C++ implementation remains a v1.0 visual/collision reader/writer and does not preserve this extension when rewriting files.
+**v1.1 / v2.0 print & KB-scale lightweight modes:**
+- **Ultra-Lightweight KB-Scale Containers:** Supports dehydrated seed (`< 10 KB`) and UE5-compatible compact (`<= 64 KB`, via `compatibleV1`) packages by offloading heavy `.3mf` meshes (`10–60+ MB`) to `~/.pygrassreal/print-cache/` (`metadata.printing.source = "local-print-cache"` with `cacheKey`) so the `.py3s` asset stays KB-scale and loads fast across UE5, web, and CLI bridges.
+- **Single-Container Print Option:** TypeScript and Python can also embed a prepared `.3mf` directly alongside the visual splat and collider (`PY3S_FLAG_PRINT_3MF`). Printing bridges such as `python/py3s_creality_bridge.py` transparently read either the embedded `.3mf` or the local cache payload. See [3DGS to print: research, workflow and limitations](docs/3DGS_TO_PRINT.md). The C++ implementation remains a v1.0 visual/collision reader/writer and does not preserve embedded print sections when rewriting files.
 
 <br/>
 

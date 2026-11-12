@@ -87,8 +87,10 @@
 - วาง 3MF ต่อจาก thumbnail (หรือ metadata หากไม่มี thumbnail) และเพิ่ม `SectionCount` อีก 1 จึงเป็น 4 หรือ 5
 - 3MF เป็น ZIP/OPC มาตรฐานที่แยกออกมาเปิดใน slicer ได้ ห้ามเปลี่ยนนามสกุล `.py3s` เป็น `.3mf` ตรง ๆ
 - payload 3MF ใช้ mm, แกน Z ขึ้น และย้ายฐานต่ำสุดมาที่ Z=0; ขนาดใน metadata เป็น width=X, height=Z, depth=Y ของ 3MF
-- `metadata.printing` เก็บ `format`, `unit`, `heightMm`, `source` (`reconstructed-mesh` หรือ `local-print-cache` พร้อม `cacheKey`), `validation` (`closed-oriented-edge-manifold` หรือ `surface-mesh-slicer-repair`), `requiresSlicerReview: true`
-- สามารถระบุโหมด `compatibleV1` / `compatible_v1` เพื่อแพ็ก Header v1.0/v1.1 (ล้าง padding ช่วง `0x50..0x7F` ให้เป็นศูนย์เมื่อไม่ใช้ v2 header) สำหรับเอนจิ้น UE5/Unity รุ่น v1.x โดยยังคง Section 3 JSON metadata ครบถ้วน
+- `metadata.printing` เก็บ `format`, `unit`, `heightMm`, `source` (`reconstructed-mesh` หรือ `local-print-cache` พร้อม `cacheKey` และ `print3mfBytes`), `validation` (`closed-oriented-edge-manifold` หรือ `surface-mesh-slicer-repair`), `requiresSlicerReview: true`
+- **โหมดไฟล์เบาระดับ KB-Scale (`compatibleV1` / `local-print-cache`):**
+  - **NASA Seed (`< 10 KB`):** ตั้งบิต `0x4000` (`FLAG_STATE_DEHYDRATED_SEED`) และ `0x8000` (`FLAG_AUTO_HYDRATE_ON_MOUNT`) สำหรับการส่งต่อไฟล์ขนาดเล็กมาก
+  - **UE5 Compact Package (`<= 64 KB`):** ใช้ `compatibleV1` / `compatible_v1` เพื่อแพ็ก Header v1.0/v1.1 (ช่วง `0x50..0x7F` เป็นศูนย์) และแยก `.3mf` ขนาดใหญ่ (`10–60+ MB`) ไปไว้ที่ `~/.pygrassreal/print-cache/<cacheKey>` (`source: "local-print-cache"`) ทำให้ตัวไฟล์ `.py3s` เบาระดับกิโลไบต์และยังคง Section 3 JSON metadata + `py3s_creality_bridge.py` ดึง `.3mf` เต็มไปเปิดใน Creality Print ได้ทันที
 - collider เป็นข้อมูลสำหรับชนเท่านั้น ไม่ใช้เป็นตัวแทน printable surface โดยอัตโนมัติ
 - การตรวจ edge topology ไม่ใช่การตรวจ self-intersection, vertex manifold, ผนังบาง, support หรือความแข็งแรง และไม่ใช่ผล von Mises
 - โปรไฟล์วัสดุ/ชั้นพิมพ์/infill เป็นคำแนะนำ เก็บเป็น JSON ใน `Metadata/pygrassreal-print-profile.json` ของ 3MF ไม่ใช่ preset เฉพาะเครื่องหรือ G-code
