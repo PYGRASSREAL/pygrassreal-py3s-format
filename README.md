@@ -7,7 +7,7 @@
 # PyGrassReal 3D Splat (`.py3s`) File Format
 ### The Foundational Root Asset Format of the PyGrassReal Ecosystem
 
-[![Specification](https://img.shields.io/badge/Specification-v1.0.0-blue.svg)](SPECIFICATION.md)
+[![Specification](https://img.shields.io/badge/Specification-v1.1.0-blue.svg)](SPECIFICATION.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![NVIDIA Inception](https://img.shields.io/badge/NVIDIA%20Inception-Program%20Member-76B900?logo=nvidia&logoColor=white)](https://www.nvidia.com/en-us/startups/)
 [![Copyright DIP](https://img.shields.io/badge/Copyright%20DIP-No.%20%E0%B8%A71.001520-success.svg)](docs/DIP_Copyright_Certificate_483001.pdf)
@@ -19,6 +19,8 @@
 **The Official Foundational Single-Container Asset Standard Combining 3D Gaussian Splatting Visuals with 1:1 Physics Collision.**
 
 [📖 Read Specification](SPECIFICATION.md) • [🐍 Python SDK](python/) • [⚡ C++ Implementation](cpp/) • [🌐 TypeScript / Web](typescript/) • [🏛️ Official Platform](https://pygrassreal.ai)
+
+**v1.1 print extension:** TypeScript and Python can embed a prepared 3MF alongside the visual splat and collider. The app's **Print 3D (.py3s)** action saves a single PY3S file with all print data inside, without downloading a separate 3MF. Printing tools must support reading PY3S. See [3DGS to print: research, workflow and limitations](docs/3DGS_TO_PRINT.md). The C++ implementation remains a v1.0 visual/collision reader/writer and does not preserve this extension when rewriting files.
 
 <br/>
 

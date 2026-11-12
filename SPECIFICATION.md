@@ -6,7 +6,7 @@
 > **สถานะ**: **ฟอร์แมตต้นตระกูล (Foundational Root Format)** ของระบบนิเวศ PyGrassReal Spatial Series  
 > **ชื่อฟอร์แมต**: PyGrassReal 3D Splat Single Container (`.py3s`)  
 > **MIME Media Type**: `model/vnd.pygrassreal.py3s`  
-> **เวอร์ชันสเปก**: `1.0.0`  
+> **เวอร์ชันสเปก**: `2.0.0` (Unified Container + Embedded Print 3D + CRC-32 Integrity; อ่าน v1.0 / v1.1 ได้สมบูรณ์)  
 > **Magic String**: `"PY3S"` (`0x50 0x59 0x33 0x53`)  
 > **Endianness**: Little-Endian (LE)  
 > **ขนาด Header**: 128 Bytes  
@@ -57,10 +57,10 @@
 | Offset (Hex) | ขนาด (Bytes) | ชนิดข้อมูล | ชื่อฟิลด์ | คำอธิบาย |
 |---|---|---|---|---|
 | `0x00` | 4 | `char[4]` | `Magic` | ต้องเป็น `"PY3S"` (`0x50 0x59 0x33 0x53`) |
-| `0x04` | 2 | `uint16` | `VersionMajor` | เวอร์ชันหลัก (ปัจจุบัน = 1) |
-| `0x06` | 2 | `uint16` | `VersionMinor` | เวอร์ชันย่อย (ปัจจุบัน = 0) |
-| `0x08` | 4 | `uint32` | `SectionCount` | จำนวน sections (ปกติ = 3 หรือ 4) |
-| `0x0C` | 4 | `uint32` | `Flags` | บิตแฟล็กการเข้ารหัสและการบีบอัดข้อมูล |
+| `0x04` | 2 | `uint16` | `VersionMajor` | เวอร์ชันหลัก (`1` = Legacy v1.x, `2` = Unified v2.0) |
+| `0x06` | 2 | `uint16` | `VersionMinor` | เวอร์ชันย่อย (`1` สำหรับ v1.1 Print Layer, `0` สำหรับ v2.0 / v1.0) |
+| `0x08` | 4 | `uint32` | `SectionCount` | จำนวน sections (ปกติ = 3 ถึง 5) |
+| `0x0C` | 4 | `uint32` | `Flags` | บิตแฟล็กคุณสมบัติ (Bitwise OR ดูตารางด้านล่าง) |
 | `0x10` | 8 | `uint64` | `SpzOffset` | Byte offset จุดเริ่มต้นของ Visual 3DGS Payload |
 | `0x18` | 8 | `uint64` | `SpzSize` | ขนาดของ Visual 3DGS Payload (bytes) |
 | `0x20` | 8 | `uint64` | `ColliderOffset` | Byte offset จุดเริ่มต้นของ Collision Geometry |
@@ -69,7 +69,29 @@
 | `0x38` | 8 | `uint64` | `MetadataSize` | ขนาดของ Spatial Metadata JSON (bytes) |
 | `0x40` | 8 | `uint64` | `ThumbnailOffset` | Byte offset ของ Visual Preview Image (0 ถ้าไม่มี) |
 | `0x48` | 8 | `uint64` | `ThumbnailSize` | ขนาดของ Visual Preview Image (0 ถ้าไม่มี) |
-| `0x50` | 48 | `uint8[48]` | `Reserved` | สงวนไว้สำหรับส่วนขยายอนาคต (zero padding) |
+| `0x50` | 8 | `uint64` | `Print3mfOffset` | ตำแหน่ง ZIP/OPC 3MF สำหรับ Print 3D (0 ถ้าไม่มี) |
+| `0x58` | 8 | `uint64` | `Print3mfSize` | ขนาดแพ็กเกจ Print 3D เป็นไบต์ (0 ถ้าไม่มี) |
+| `0x60` | 4 | `uint32` | `ContainerCrc32` | v2.0 (`0x20000`): ค่า IEEE 802.3 CRC-32 ของไฟล์ทั้งหมด (ตั้ง `0x60..0x67` เป็น `0` ขณะคำนวณ) |
+| `0x64` | 4 | `uint32` | `Print3mfCrc32` | v2.0 (`0x20000`): ค่า IEEE 802.3 CRC-32 ของ `print3mfData` (0 ถ้าไม่มี) |
+| `0x68` | 24 | `uint8[24]` | `HmacTag` | Security (`0x80000`): 192-bit truncated HMAC-SHA256 tag (ตั้ง `0x60..0x7F` เป็น `0` ขณะคำนวณ; มิฉะนั้น zero padding) |
+
+### ตารางบิตแฟล็ก (`Flags` 32-bit)
+- `0x0001` `FLAG_SPZ_ZSTD`, `0x0002` `FLAG_COLLIDER_GLB`, `0x0004` `FLAG_COLLIDER_FBX`, `0x0008` `FLAG_PRINT_3MF`
+- `0x0010..0x0800`: Simulation flags (`STRESS`, `VORONOI`, `MEGAS_THERMAL`, `PLANT_WILTING`, `DIFFWIND`, `PHYSSKIN`, `MAGNETIC_MPM`, `ENLIVENING_GS`)
+- `0x1000` `FLAG_MFG_PRINT3D_READY`, `0x2000` `FLAG_AI_SYSTEM_PROMPT`, `0x4000` `FLAG_STATE_DEHYDRATED_SEED`, `0x8000` `FLAG_AUTO_HYDRATE_ON_MOUNT`, `0x10000` `FLAG_HANUMAN_PARAMETRIC_AI`
+- `0x20000` `FLAG_INTEGRITY_CRC32` (ตรวจสอบ CRC-32 ที่ `0x60..0x67` ตอน Unpack), `0x40000` `FLAG_COLLIDER_CONVEX`, `0x80000` `FLAG_SECURITY_HMAC` (ลายเซ็น HMAC-SHA256 192-bit ที่ `0x68..0x7F`)
+
+### v1.1 Print Layer
+
+- ตั้ง flag `0x8` เมื่อมี `print3mfData`; `VersionMinor = 1` เมื่อเขียนส่วนนี้ มิฉะนั้นเขียน v1.0
+- วาง 3MF ต่อจาก thumbnail (หรือ metadata หากไม่มี thumbnail) และเพิ่ม `SectionCount` อีก 1 จึงเป็น 4 หรือ 5
+- 3MF เป็น ZIP/OPC มาตรฐานที่แยกออกมาเปิดใน slicer ได้ ห้ามเปลี่ยนนามสกุล `.py3s` เป็น `.3mf` ตรง ๆ
+- payload 3MF ใช้ mm, แกน Z ขึ้น และย้ายฐานต่ำสุดมาที่ Z=0; ขนาดใน metadata เป็น width=X, height=Z, depth=Y ของ 3MF
+- `metadata.printing` เก็บ `format`, `unit`, `heightMm`, `source: reconstructed-mesh`, `validation: closed-oriented-edge-manifold`, `requiresSlicerReview: true`
+- collider เป็นข้อมูลสำหรับชนเท่านั้น ไม่ใช้เป็นตัวแทน printable surface โดยอัตโนมัติ
+- การตรวจ edge topology ไม่ใช่การตรวจ self-intersection, vertex manifold, ผนังบาง, support หรือความแข็งแรง และไม่ใช่ผล von Mises
+- โปรไฟล์วัสดุ/ชั้นพิมพ์/infill เป็นคำแนะนำ เก็บเป็น JSON ใน `Metadata/pygrassreal-print-profile.json` ของ 3MF ไม่ใช่ preset เฉพาะเครื่องหรือ G-code
+- v1.0 reader ที่อ่านตาม offset เดิมยังอ่าน visual/collider/metadata/thumbnail ได้ แต่ writer รุ่นเดิมอาจทำ Print Layer หายเมื่อแพ็กใหม่ ควรใช้ TypeScript/Python v1.1 เพื่อเก็บครบ
 
 ---
 
