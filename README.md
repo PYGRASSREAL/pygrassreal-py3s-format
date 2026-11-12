@@ -20,9 +20,9 @@
 
 [📖 Read Specification](SPECIFICATION.md) • [🐍 Python SDK](python/) • [⚡ C++ Implementation](cpp/) • [🌐 TypeScript / Web](typescript/) • [🏛️ Official Platform](https://pygrassreal.ai)
 
-**v1.1 / v2.0 print & KB-scale lightweight modes:**
-- **Ultra-Lightweight KB-Scale Containers:** Supports dehydrated seed (`< 10 KB`) and UE5-compatible compact (`<= 64 KB`, via `compatibleV1`) packages by offloading heavy `.3mf` meshes (`10–60+ MB`) to `~/.pygrassreal/print-cache/` (`metadata.printing.source = "local-print-cache"` with `cacheKey`) so the `.py3s` asset stays KB-scale and loads fast across UE5, web, and CLI bridges.
-- **Single-Container Print Option:** TypeScript and Python can also embed a prepared `.3mf` directly alongside the visual splat and collider (`PY3S_FLAG_PRINT_3MF`). Printing bridges such as `python/py3s_creality_bridge.py` transparently read either the embedded `.3mf` or the local cache payload. See [3DGS to print: research, workflow and limitations](docs/3DGS_TO_PRINT.md). The C++ implementation remains a v1.0 visual/collision reader/writer and does not preserve embedded print sections when rewriting files.
+**Print-Ready & Ultra-Lightweight KB-Scale Containers:**
+- **Ultra-Lightweight (KB-Scale):** Supports compact container profiles (`< 10 KB` Seed and `<= 64 KB` UE5-compatible via `compatibleV1`) while resolving high-detail print surfaces transparently so `.py3s` files stay tiny, fast to transfer, and quick to load across UE5, web viewers, and slicers.
+- **Direct 3D Printing from `.py3s`:** A single `.py3s` file holds the visual splat, 1:1 physics collider, metadata, and print-ready surface/profile — send `.py3s` straight to Creality Print via `python/py3s_creality_bridge.py` or `python/Open_PY3S_in_CrealityPrint.bat`. See [3DGS to print: research, workflow and limitations](docs/3DGS_TO_PRINT.md). The C++ implementation remains a v1.0 visual/collision reader/writer and does not preserve extended print sections when rewriting files.
 
 <br/>
 
@@ -138,7 +138,7 @@ python python/py3s_codec.py pack --splat visual.bin --collider collision.bin --m
 # Inspect file contents and metadata
 python python/py3s_codec.py info model.py3s
 
-# Open embedded or local-print-cache Print 3D (.3mf) directly in Creality Print
+# Print directly from a .py3s file in Creality Print
 python python/py3s_creality_bridge.py model.py3s --launch
 # Windows quick launcher (drag & drop .py3s or interactive file picker):
 python/Open_PY3S_in_CrealityPrint.bat
